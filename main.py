@@ -126,10 +126,10 @@ async def voice_webhook(request: Request):
         scenario = DEFAULT_SCENARIO
     # NOTE: Twilio strips query strings from the <Stream> url, so we pass the
     # scenario via a <Parameter> tag instead, which arrives in the 'start' event.
-    twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
+       twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Connect>
-        <Stream url="wss://{host}/media-stream" record="record-from-answer-dual">
+    <Connect record="record-from-answer-dual">
+        <Stream url="wss://{host}/media-stream">
             <Parameter name="scenario" value="{scenario}" />
         </Stream>
     </Connect>
