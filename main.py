@@ -3,6 +3,7 @@ import json
 import base64
 import asyncio
 import traceback
+from urllib.parse import parse_qs
 
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import Response
@@ -135,7 +136,12 @@ async def voice_webhook(request: Request):
 @app.websocket("/media-stream")
 async def media_stream(websocket: WebSocket):
     await websocket.accept()
-    scenario = websocket.query_params.get("scenario", DEFAULT_SCENARIO)
+
+    query_string = websocket.scope.get("query_string", b"").decode()
+    parsed_params = parse_qs(query_string)
+    scenario = parsed_params.get("scenario", [DEFAULT_SCENARIO])[0]
+    print(f"[DEBUG] Raw query string: {query_string!r}, parsed scenario: {scenario}")
+
     if scenario not in SCENARIOS:
         scenario = DEFAULT_SCENARIO
     system_prompt = SCENARIOS[scenario]
