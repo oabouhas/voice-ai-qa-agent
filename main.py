@@ -118,7 +118,8 @@ def text_to_speech_ulaw(text: str) -> bytes:
 
 @app.post("/voice")
 async def voice_webhook(request: Request):
-    """Twilio hits this when the call connects. We tell it to open a media stream."""
+    """Twilio hits this when the call connects. We tell it to open a media stream
+    AND record the call (both sides) so we have audio for the submission."""
     host = request.headers.get("host")
     scenario = request.query_params.get("scenario", DEFAULT_SCENARIO)
     if scenario not in SCENARIOS:
@@ -128,7 +129,7 @@ async def voice_webhook(request: Request):
     twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Connect>
-        <Stream url="wss://{host}/media-stream">
+        <Stream url="wss://{host}/media-stream" record="record-from-answer-dual">
             <Parameter name="scenario" value="{scenario}" />
         </Stream>
     </Connect>
