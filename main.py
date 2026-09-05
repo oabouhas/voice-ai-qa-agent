@@ -85,6 +85,7 @@ async def media_stream(websocket: WebSocket):
     print("[TWILIO] WebSocket connected")
 
     stream_sid = None
+    call_active = True  # flips to False once the call ends, so we stop trying to speak
     conversation_history = []  # per-call, not shared across calls
     loop = asyncio.get_running_loop()
 
@@ -125,6 +126,9 @@ async def media_stream(websocket: WebSocket):
     dg_connection.start(options)
 
     async def speak(reply_text: str):
+        if not call_active:
+            print("[INFO] Call already ended, skipping speech")
+            return
         print(f"[SPEAKING] {reply_text}")
         audio_bytes = text_to_speech_ulaw(reply_text)
         await send_audio_to_twilio(websocket, stream_sid, audio_bytes)
@@ -137,16 +141,21 @@ async def media_stream(websocket: WebSocket):
     async def send_audio_to_twilio(ws, sid, audio_bytes):
         """Twilio expects base64 mulaw audio in ~160-byte (20ms) chunks."""
         chunk_size = 160
-        for i in range(0, len(audio_bytes), chunk_size):
-            chunk = audio_bytes[i:i + chunk_size]
-            payload = base64.b64encode(chunk).decode("utf-8")
-            message = {
-                "event": "media",
-                "streamSid": sid,
-                "media": {"payload": payload},
-            }
-            await ws.send_text(json.dumps(message))
-            await asyncio.sleep(0.02)  # pace it roughly at real-time
+        try:
+            for i in range(0, len(audio_bytes), chunk_size):
+                if not call_active:
+                    break
+                chunk = audio_bytes[i:i + chunk_size]
+                payload = base64.b64encode(chunk).decode("utf-8")
+                message = {
+                    "event": "media",
+                    "streamSid": sid,
+                    "media": {"payload": payload},
+                }
+                await ws.send_text(json.dumps(message))
+                await asyncio.sleep(0.02)  # pace it roughly at real-time
+        except Exception:
+            print("[INFO] Call ended while bot was still speaking - stopping playback")
 
     async def send_initial_greeting():
         """Have our bot speak first, in case the other agent waits for the caller."""
@@ -176,12 +185,14 @@ async def media_stream(websocket: WebSocket):
 
             elif data["event"] == "stop":
                 print("[TWILIO] Stream stopped")
+                call_active = False
                 dg_connection.finish()
                 break
 
     except Exception:
         print("[ERROR] Exception in media_stream:")
         traceback.print_exc()
+        call_active = False
         dg_connection.finish()
 
 
