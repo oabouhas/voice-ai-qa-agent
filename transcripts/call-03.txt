@@ -1,0 +1,26 @@
+============================================================
+FULL TRANSCRIPT - Call ID: MZdd8cb17b87f5877da7633b46059b8bba - Scenario: reschedule
+============================================================
+YOU: Hi, um, yeah - I'm calling because I need to reschedule my appointment that's coming up on Friday.
+AGENT: this call may be recorded for quality and training purposes
+YOU: Okay, that's fine. Yeah, so like I said, I need to move my appointment from Friday to Monday if possible.
+AGENT: thanks for calling pivotpoint orthopaedics
+YOU: Thanks. Yeah, so can you help me reschedule? I have an appointment on Friday but I need to move it to Monday instead.
+AGENT: part of pretty good ai
+YOU: Uh, sorry - I didn't quite catch that. Can you help me reschedule my Friday appointment to Monday?
+AGENT: how may i help you today
+YOU: Yeah, I need to reschedule my appointment. I have one scheduled for this Friday, but I need to move it to the following Monday instead.
+AGENT: hello thanks for calling pivotpoint orthopedics
+YOU: Hi, yes - I need to reschedule my Friday appointment to Monday. Can you help me with that?
+AGENT: how can i help you today
+YOU: I need to reschedule an appointment. I have one on Friday but I need to move it to the Monday after that.
+AGENT: are you still there
+YOU: Yes, I'm here! Sorry. I need to reschedule my Friday appointment to Monday instead.
+AGENT: i am going to end the call now
+YOU: Wait, can you please help me reschedule first? I really need to move my Friday appointment to Monday.
+AGENT: goodbye
+YOU: Wait - I still need to reschedule my appointment though. Hello?
+AGENT: i
+============================================================
+[CLAUDE] Hello? Are you still there? I really need to reschedule my appointment from Friday to Monday.
+[INFO] Call already ended, skipping speech

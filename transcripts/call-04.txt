@@ -1,0 +1,55 @@
+FULL TRANSCRIPT - Call ID: MZ80b1a9ded010be4faa429851441d6603 - Scenario: reschedule
+============================================================
+YOU: Hi, um, I need to reschedule my appointment that's coming up on Friday. Is this a good time?
+AGENT: this call may be recorded for quality and training purposes
+YOU: Oh, okay. Yeah, that's fine with me.
+AGENT: thanks for calling pivot point orthopaedics
+YOU: Hi there! Yeah, so I have an appointment scheduled for this Friday, but I actually need to move it to Monday if that's possible?
+AGENT: part of pretty good ai
+YOU: Oh, okay. So can you help me reschedule my appointment then?
+AGENT: how may i help you today
+YOU: Yeah, I need to reschedule my appointment from Friday to the following Monday. Can you help me with that?
+AGENT: i see you're calling from the number we have on file
+YOU: Yes, that's right. So can we move my Friday appointment to Monday?
+AGENT: am i speaking with anne
+YOU: Oh no, it's Omnia - Omnia Abouhassan. I'm the one with the appointment on Friday that I need to reschedule.
+AGENT: please provide
+YOU: Um, my date of birth is December 14th, 1998.
+AGENT: what is your last name
+YOU: Abouhassan. A-B-O-U-H-A-S-S-A-N.
+AGENT: i need your full name to look up your information
+YOU: It's Omnia Abouhassan. O-M-N-I-A is the first name.
+AGENT: thank you
+YOU: You're welcome. So, can we get that Friday appointment moved to Monday?
+AGENT: let me check your upcoming appointment
+YOU: Okay, great. Thank you.
+AGENT: you do not have
+YOU: Wait, really? I'm pretty sure I have an appointment this Friday. Can you double-check under my name?
+AGENT: i
+YOU: Yes?
+AGENT: how can i assist you further today
+YOU: Well, I'm confused now. I thought I had an appointment on Friday that I needed to reschedule to Monday. Are you sure there's nothing showing up under my name?
+AGENT: there anything else you'd like help with today
+YOU: Um, yeah - we still need to figure out my appointment. Can you check again? Maybe it's under a different day this week or next week?
+AGENT: looks like you do not have any upcoming appointments scheduled right now
+YOU: That's really strange. I could've sworn I had something scheduled. Well, okay then. I guess maybe I was mistaken. Sorry about that. Thanks for checking anyway.
+AGENT: i do not see any upcoming appointments
+YOU: Okay, I understand. I must have gotten confused. Thanks for your help anyway. Have a good day!
+AGENT: on your chart
+AGENT: would you like to
+YOU: Alright, no problem. I appreciate you checking for me. I'll look into it on my end. Thanks, bye!
+YOU: Oh, do you want me to schedule a new appointment then?
+AGENT: there are no upcoming appointments showing in your record
+YOU: Got it, okay. Thanks for clarifying. I'll figure it out on my side. Have a good one, bye!
+AGENT: would you like to book a new appointment for monday
+YOU: Oh! Um, no, that's okay. I think I need to check my records first to see what's going on. But thank you for offering. I'll call back if I need to. Bye now!
+AGENT: there are still no upcoming appointments showing for you
+YOU: Yeah, I heard you. That's fine, I'll sort it out. Thanks again for your help. Goodbye!
+AGENT: you like to schedule a new one for monday
+YOU: No, that's alright. I need to figure out what happened with my original appointment first. Thank you though. Bye!
+AGENT: are you still there
+YOU: Yes, I'm here. But I think we're done - I'm going to hang up now. Thanks again, bye!
+AGENT: i am going to end the call now
+YOU: Okay, sounds good. Thank you, bye!
+AGENT: goodbye
+YOU: Bye!

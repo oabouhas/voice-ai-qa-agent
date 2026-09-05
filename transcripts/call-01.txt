@@ -1,0 +1,27 @@
+============================================================
+FULL TRANSCRIPT - Call ID: MZ9e018f334f2292de45db955462ee233c - Scenario: refill
+============================================================
+YOU: Hi, um, I'm calling because I need a refill on my pain medication? I'm running a bit low.
+AGENT: this call may be recorded for quality and training purposes
+YOU: Oh, okay, that's fine. Um, yeah, so I just need to get my pain medication refilled if that's possible?
+AGENT: thanks for calling pivotpoint orthopedics
+YOU: Thanks. Yeah, so I'm getting low on my prescription and I was hoping to get it refilled soon?
+AGENT: part of pretty good ai
+YOU: Uh, sorry, I didn't quite catch that? But yeah, I just need a refill on my pain medication if you can help with that.
+AGENT: how may i help you today
+YOU: Hi, yeah, I need to refill my pain medication. I'm running pretty low and I don't want to run out.
+AGENT: can you please provide your full name and date of birth
+YOU: Sure, it's Omnia Abouhassan, and my date of birth is December 14th, 1998.
+AGENT: i don't see any pain medications on your chart that i can refill right now
+YOU: Oh, um, it's the one that Dr. Lukovsky prescribed after my last visit with him. Maybe it's under his name or something?
+AGENT: if you'd like to speak with someone about this just let me know
+YOU: Yeah, that would be great actually. Can I talk to someone who can help me figure this out?
+AGENT: transferring you now
+YOU: Okay, thank you.
+AGENT: thank you
+YOU: You're welcome. I'll just wait for the transfer then.
+AGENT: hello you've reached the pretty good ai test line
+YOU: Oh, hi there. Um, I was just transferred - I'm trying to get a refill on my pain medication that Dr. Lukovsky prescribed, but they couldn't find it in my chart?
+AGENT: goodbye
+YOU: Oh, okay... bye then.
+============================================================

@@ -1,0 +1,29 @@
+FULL TRANSCRIPT - Call ID: MZ1e97708171c41c24fd5ecc64e0b26541 - Scenario: hours_insurance
+============================================================
+YOU: Hi! Um, I'm calling to get some information about your office. I was wondering what your office hours are?
+AGENT: this call may be recorded for quality and training purposes
+YOU: Oh, okay, no problem. So yeah, I just wanted to ask about your hours - like, what days and times are you open?
+AGENT: thanks for calling pivot point orthopaedics
+YOU: Thanks! So, um, could you tell me what your office hours are? And also, are you guys open on weekends at all?
+AGENT: part of pretty good ai
+YOU: Oh, okay. Um, so about the hours though - when are you open during the week? And do you have weekend hours?
+AGENT: how may i help you today
+YOU: Hi, yeah, I'm looking to get some information about your practice. I wanted to know what your office hours are, and if you're open on weekends? Also, do you accept Blue Cross Blue Shield insurance?
+AGENT: yes pivotpoint orthopedics accepts most insurance
+YOU: Okay, great! But does that include Blue Cross Blue Shield specifically? And um, what are your actual office hours?
+AGENT: plans including blue cross blue shield
+YOU: Oh perfect, that's great! And what about the office hours - like what days and times are you open? Do you have any weekend availability?
+AGENT: would you like help updating your insurance information or have any other
+YOU: No, I'm actually a new patient - I haven't been to your office before. I'm just trying to find out your hours first. Like, what time do you open and close during the week? And are you open Saturdays or Sundays?
+AGENT: is there anything else i can help you with today
+YOU: Well, I still need to know your office hours - you haven't told me that yet. What days and times are you open?
+AGENT: let me know if you need help with appointments
+YOU: I might need that later, but first I really just need to know your hours. Like, are you open Monday through Friday? What time do you open and close? And do you have Saturday or Sunday hours?
+AGENT: insurance updates or anything else
+YOU: I mean, I'm just trying to get basic information about when you're open. Can you tell me your office hours? Like, are you open 9 to 5, or what are the times?
+AGENT: are you still there
+YOU: Yes, I'm here! I'm just trying to find out what your office hours are. Can someone help me with that? Like, what time does the office open and close?
+AGENT: i am bode to end the call now
+YOU: Wait, before you go - can you please just tell me real quick what your office hours are? That's all I need to know.
+AGENT: goodbye
+YOU: Oh, um, okay. Bye.

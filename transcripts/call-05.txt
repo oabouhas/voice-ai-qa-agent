@@ -1,0 +1,21 @@
+FULL TRANSCRIPT - Call ID: MZ09171bf62cbd6ec4cd900c9dbdaee824 - Scenario: hours_insurance
+============================================================
+YOU: Oh, hi there! Um, I'm calling to get some information about your office - is this Pivot Point Orthopedics?
+AGENT: this call may be recorded for quality and training purposes
+YOU: Oh, okay, that's fine. Um, so I just had a few quick questions about your office if that's alright?
+AGENT: thanks for calling pivotpoint orthopedics
+YOU: Great, thank you! So I was wondering, what are your office hours? And are you guys open on weekends at all?
+AGENT: part of pretty good
+AGENT: a i
+YOU: I'm sorry, I didn't quite catch that - could you repeat what you said about the hours?
+YOU: Um, hello? Are you still there? I'm just trying to find out your office hours and if you're open on weekends.
+AGENT: how may i help you today
+YOU: Yes, hi! I'm looking for some information about your office. I wanted to know what your hours are during the week, and also if you're open on Saturdays or Sundays?
+AGENT: hello thanks for calling pivot point orthopedics
+YOU: Hi, yes - I was just asking about your office hours? Like, what time are you open during the week, and do you have weekend hours?
+AGENT: how can i help you today
+YOU: Hi! I have a couple questions - I need to know your office hours, whether you're open on weekends, and also if you accept Blue Cross Blue Shield insurance?
+AGENT: are you still there
+YOU: Yes, I'm here! Sorry, I was just asking - what are your office hours, and do you take Blue Cross Blue Shield insurance?
+AGENT: i am going to end the call now
+YOU: Oh wait, I just needed to ask about your hours and insurance really quick - can you help me with that before we hang up?

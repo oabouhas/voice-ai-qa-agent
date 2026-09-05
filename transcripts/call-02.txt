@@ -1,0 +1,43 @@
+FULL TRANSCRIPT - Call ID: MZdfa9ba76b12a48b6a417d0a8376e2147 - Scenario: reschedule
+============================================================
+YOU: Hi there! Um, I'm calling because I need to reschedule my appointment that's coming up on Friday.
+AGENT: this call may be recorded for quality and training purposes
+YOU: Okay, no problem. Yeah, so I just need to move my Friday appointment to Monday if that's possible?
+AGENT: thanks for calling pivotpoint orthopaedics
+YOU: Thanks! Yeah, so I have an appointment scheduled for this Friday, but something came up and I need to reschedule it to the following Monday instead. Is that doable?
+AGENT: part of pretty good ai how may i help you today
+YOU: Yeah, hi! I need to reschedule my appointment from this Friday to the Monday after. Can you help me with that?
+AGENT: hello thanks for calling pivotpoint orthopedics
+YOU: Hi! Yes, I need to reschedule my appointment that's on Friday to the following Monday instead. Can we do that?
+AGENT: how can i help you today
+YOU: I need to reschedule my appointment from Friday to Monday next week. Is there availability on Monday?
+AGENT: i see you're calling
+YOU: Yes, I'm calling to reschedule. I have an appointment this Friday but I need to move it to Monday if possible.
+AGENT: you please provide your full name and date of birth
+YOU: Sure! It's Omnia Abouhassan, and my date of birth is December 14th, 1998.
+AGENT: i'll need your full name
+YOU: Oh sorry - Omnia Abouhassan. O-M-N-I-A, last name A-B-O-U-H-A-S-S-A-N.
+AGENT: can you
+YOU: Yes, my name is Omnia Abouhassan, spelled O-M-N-I-A, and the last name is A-B-O-U-H-A-S-S-A-N.
+AGENT: you please tell me your full name and date of birth
+YOU: Sure! My full name is Omnia Abouhassan, and my date of birth is December 14th, 1998.
+AGENT: i wasn't able to verify your identity
+YOU: Oh, um, let me try again. My name is Omnia Abouhassan - O-M-N-I-A A-B-O-U-H-A-S-S-A-N. Date of birth December 14th, 1998. Is there something else you need to verify me?
+AGENT: so i can't make changes to your appointment right now
+YOU: Oh, okay. So what do I need to do then? Should I call back at a different time or is there another way to reschedule?
+AGENT: i can have our clinic support team follow-up with you
+YOU: Okay, that works. Um, how soon will they call me back? I just need to know because I really need to move that Friday appointment to Monday.
+AGENT: would you like me to do that
+YOU: Yes, please! That would be great. Thank you so much.
+AGENT: i wasn't able to
+YOU: Oh, I'm sorry - yes, please have the support team follow up with me. That would be helpful, thanks!
+AGENT: i still can't verify your identity
+YOU: Hmm, okay. Is there maybe a different piece of information you need from me? Like my phone number or address or something?
+AGENT: so i'm unable
+YOU: I understand. So the support team will call me back then to help with the reschedule? Is there anything else I need to do on my end?
+AGENT: transferring you now thank you
+YOU: Okay, thank you so much! I appreciate it.
+AGENT: hello you've reached the pretty good ai test line
+YOU: Oh, hi! I was just transferred. I'm trying to reschedule my appointment from Friday to Monday - can you help me with that?
+AGENT: goodbye
+YOU: Okay, um, goodbye. Thanks!

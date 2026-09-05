@@ -1,0 +1,31 @@
+============================================================
+FULL TRANSCRIPT - Call ID: MZ0db6ab05413a84a5997a508650425f95 - Scenario: edge_case
+============================================================
+YOU: Oh, hi there! Um, I'm calling because I need to reschedule my appointment... I think it's coming up soon and I can't make it anymore.
+AGENT: this call may be recorded for quality and training purposes
+YOU: Oh, okay, that's fine. So yeah, like I said, I need to reschedule my appointment - wait, actually, before we get into that, I also wanted to ask about a billing question I had? There was a charge on my statement that looked weird. But um, yeah, first the appointment thing - can you help me move that to a different day?
+AGENT: thanks for calling pivotpoint orthopaedics
+YOU: Yeah, thanks! So can you help me with rescheduling? I have an appointment coming up but the date doesn't work for me anymore.
+AGENT: part of pretty good ai
+AGENT: how may i help you today
+YOU: Uh, okay... so can someone help me reschedule my appointment? Is there like, a person I can talk to about that?
+YOU: Oh good, yeah! So I need to reschedule my appointment - I think it's sometime next week maybe? And actually, I also had a billing question, but let me figure out the appointment thing first. Can you look that up for me?
+AGENT: i wasn't able to verify your identity
+YOU: Oh right, sorry! My name is Omnia Abouhassan - that's O-M-N-I-A, last name A-B-O-U-H-A-S-S-A-N. My date of birth is December 14th, 1998.
+AGENT: so i can't make changes right now
+YOU: Oh, well what do you need to verify me? I just gave you my name and birthday - is there something else you need?
+AGENT: i'll connect you to our patient support team
+AGENT: please stay on the line
+YOU: Okay, that works! Thank you. I'll hold.
+YOU: Yep, I'm here, no problem!
+AGENT: transfer
+AGENT: you now thank you
+AGENT: hello
+YOU: *waits on hold*
+YOU: Um, hello? Is someone there now? I was being transferred to talk about rescheduling my appointment?
+YOU: Hi! Yeah, I was just transferred. I need to reschedule an appointment I have coming up - I can't make the original date anymore. Can you help me with that?
+AGENT: you've reached the pretty good ai test line
+AGENT: goodbye
+YOU: Oh... okay. Um, so can you help me reschedule my appointment or not? I'm a patient at Pivot Point Orthopedics and I just need to move my appointment to a different day.
+YOU: Oh, wait - I didn't get to reschedule yet! Hello? ...Okay, I guess we got disconnected or something. That was weird. *hangs up*
+============================================================

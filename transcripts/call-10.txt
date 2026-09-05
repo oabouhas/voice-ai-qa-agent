@@ -1,0 +1,39 @@
+============================================================
+FULL TRANSCRIPT - Call ID: MZf0c53b9efd9c467cc327e4d31cf9ba55 - Scenario: new_appointment
+============================================================
+YOU: Hi, um, I'm calling because I've been having some knee pain and I'd like to schedule an appointment to get it checked out.
+AGENT: this call may be recorded for quality and training purposes
+YOU: Okay, that's fine. So yeah, I was hoping to get in sometime next week if possible?
+AGENT: thanks for calling pivot point orthopedics
+YOU: Thanks! Yeah, so I'm a new patient and I really need to see someone about my knee. Do you have any openings next week?
+AGENT: part of pretty good ai
+YOU: Oh, okay. Um, so can you help me schedule an appointment? I'm dealing with this knee pain and would really like to get it looked at soon.
+AGENT: may i help you today
+YOU: Yes, please! I need to schedule an appointment for knee pain. I'm a new patient and was hoping to get in sometime next week if that's possible?
+AGENT: i can help with scheduling
+YOU: Great, thank you! So what do you need from me to get that set up?
+AGENT: may i have your full name and date of birth
+YOU: Sure, it's Omnia Abouhassan, and my date of birth is December 14th, 1998.
+AGENT: i wasn't able to verify your identity just now
+YOU: Oh, um, I'm actually a new patient - I don't have an existing appointment or anything on file yet. Is that okay? I just need to schedule my first appointment.
+AGENT: so i can't schedule the appointment directly
+YOU: Oh, okay. So what do I need to do then? Is there someone else I should talk to, or like a form I need to fill out first?
+AGENT: i can make sure
+YOU: Okay, yeah, that would be great. What do you need me to do?
+AGENT: since i can't schedule your first
+YOU: Right, I understand. So how do I go about getting my first appointment set up then?
+AGENT: appointment directly
+YOU: Okay, so what's the next step for me? Should I hold while you transfer me, or do I need to call a different number?
+AGENT: i'll connect you to our patient support team now
+AGENT: please stay on the line
+YOU: Perfect, thank you so much! I'll hold.
+YOU: Yep, I'm here. Thanks!
+AGENT: transferring you now thank you
+AGENT: hello
+YOU: Thank you, I appreciate it!
+YOU: Hi! I was just transferred over - I'm trying to schedule a new patient appointment for some knee pain I've been having.
+AGENT: you've reached the pretty good ai test line
+AGENT: goodbye
+YOU: Oh, um, okay. I'm trying to schedule an appointment at Pivot Point Orthopedics - is this the right place? I'm a new patient and need to see someone about my knee.
+YOU: Oh, okay. Um, goodbye then. I guess I'll... call back another time? Bye.
+============================================================

@@ -1,0 +1,67 @@
+FULL TRANSCRIPT - Call ID: MZ9f0835bf04bf04cf2b730e42c1e30090 - Scenario: cancel
+============================================================
+YOU: Hi, yeah, I need to cancel my upcoming appointment. I'm actually moving out of state, so I won't be needing it anymore.
+AGENT: this call may be recorded for quality and training purposes
+YOU: Okay, that's fine.
+AGENT: thanks for calling pivotpoint orthopaedics
+YOU: Thanks. So yeah, I just need to cancel my appointment since I'm moving.
+AGENT: part of pretty good ai
+YOU: Uh, sorry, what was that? I just need to cancel my appointment.
+AGENT: how may i help you today
+YOU: Yeah, I need to cancel my upcoming appointment. I'm moving out of state so I won't need the follow-up anymore.
+AGENT: i see you're calling from the number we have on file
+YOU: Yeah, that's right. So can you help me cancel the appointment?
+AGENT: am i speaking with anne
+YOU: No, it's Omnia. Omnia Abouhassan.
+AGENT: could you please provide your full name and date of birth
+YOU: Sure, it's Omnia Abouhassan, and my date of birth is December 14th, 1998.
+AGENT: this will help me identify your record
+YOU: Okay, no problem.
+AGENT: go ahead and tell me
+YOU: I just did - Omnia Abouhassan, December 14th, 1998.
+AGENT: could you please spell out
+YOU: Oh, sure. O-M-N-I-A, last name A-B-O-U-H-A-S-S-A-N.
+AGENT: your first and last name for me
+YOU: Yeah, I just spelled it - O-M-N-I-A for the first name, and A-B-O-U-H-A-S-S-A-N for the last name.
+AGENT: i have your date of birth
+AGENT: as
+YOU: Okay great. So can we go ahead and cancel that appointment then?
+YOU: Um, sorry, I didn't catch that?
+AGENT: please spell your first and last name so i can make sure i
+YOU: I already spelled it - Omnia is O-M-N-I-A, and Abouhassan is A-B-O-U-H-A-S-S-A-N.
+AGENT: but right
+YOU: Yeah, that's right. So can you cancel my appointment now?
+AGENT: could you spell your first and last name for me
+YOU: I've spelled it a couple times already - O-M-N-I-A, A-B-O-U-H-A-S-S-A-N. Can we just cancel the appointment please?
+AGENT: that way i can be sure i have your information correct
+YOU: Okay, I understand. It's O-M-N-I-A for Omnia, and A-B-O-U-H-A-S-S-A-N for Abouhassan.
+AGENT: are you still there
+YOU: Yeah, I'm here. So did you find my appointment?
+AGENT: i need to confirm your
+YOU: My name is Omnia Abouhassan, birth date December 14th, 1998. I just need to cancel my appointment.
+AGENT: thanks for spelling that
+YOU: No problem. So can you cancel the appointment for me?
+AGENT: thank you for clear
+YOU: Sure. Can we go ahead and cancel it now?
+AGENT: thank you for
+YOU: Yeah, so can you help me cancel the appointment?
+AGENT: i appreciate you spelling that out
+YOU: You're welcome. So are you able to cancel my appointment now?
+AGENT: i wasn't able to find your record in our system
+YOU: Oh, that's weird. I definitely have an appointment coming up. Maybe try searching by my phone number? This is the number you guys have on file for me.
+AGENT: wasn't able to find your record in our system
+YOU: Hmm, okay. Could you try looking under just "Omnia" or maybe my date of birth - December 14th, 1998? I know I have an appointment scheduled.
+AGENT: so i can't access appointment details right now
+YOU: Oh, okay. So what should I do then? I really need to cancel this appointment since I'm moving out of state.
+AGENT: i'll connect you to our patient support team for further help
+YOU: Okay, yeah, that works. Thanks.
+AGENT: please stay on the line
+YOU: Alright, I'll hold.
+AGENT: transferring you now thank you
+YOU: Thank you.
+AGENT: hello
+YOU: Hi, yes, I was just transferred. I need to cancel my upcoming appointment because I'm moving out of state.
+AGENT: you've reached the pretty good ai test line
+YOU: Oh, um, okay. I just need to cancel my appointment at Pivot Point Orthopedics. Can you help me with that?
+AGENT: goodbye
+YOU: Oh, okay. Bye then.

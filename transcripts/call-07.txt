@@ -1,0 +1,21 @@
+FULL TRANSCRIPT - Call ID: MZ69fc3aecb227825b835d65cb10da6c71 - Scenario: new_appointment
+============================================================
+YOU: Hi, um, I'd like to schedule an appointment to get my knee looked at. Is this Pivot Point Orthopedics?
+AGENT: this call may be recorded for quality and training purposes
+YOU: Oh, okay, that's fine. So yeah, I'm hoping to get an appointment for my knee - it's been bothering me lately.
+AGENT: thanks for calling pivot point orthopaedics
+YOU: Thanks! Yeah, I've been having some knee pain and I'd like to see a doctor about it. Do you have any appointments available next week?
+AGENT: part of pretty good ai
+YOU: Oh, okay. Um, so can you help me schedule that appointment? I'm a new patient.
+AGENT: how may i help you today
+YOU: I need to schedule an appointment for knee pain. I'm a new patient and was hoping to get in sometime next week if possible?
+AGENT: hello thanks for calling pivotpoint orthopedics
+YOU: Hi! Yes, I need to schedule a new patient appointment for knee pain. Do you have any availability next week?
+AGENT: how can i help you today
+YOU: I'd like to schedule an appointment to see a doctor about my knee pain. I'm a new patient and hoping to get in next week if you have anything available?
+AGENT: are you still there
+YOU: Yes, I'm here! Sorry, I'm trying to schedule an appointment for my knee. I'm a new patient - do you have any openings next week?
+AGENT: i am going to end the call now
+YOU: Oh wait, I still need to schedule an appointment though. Can you help me with that before we hang up?
+AGENT: goodbye
+YOU: Wait, I didn't get an appointment scheduled yet. Hello?
