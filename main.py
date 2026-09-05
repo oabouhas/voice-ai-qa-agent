@@ -95,9 +95,17 @@ async def media_stream(websocket: WebSocket):
         transcript = result.channel.alternatives[0].transcript
         if transcript and result.is_final:
             print(f"[DEEPGRAM] {transcript}")
-            asyncio.run_coroutine_threadsafe(
+            future = asyncio.run_coroutine_threadsafe(
                 handle_final_transcript(transcript), loop
             )
+            def log_errors(f):
+                try:
+                    f.result()
+                except Exception as e:
+                    import traceback
+                    print(f"[ERROR in handle_final_transcript] {e}")
+                    traceback.print_exc()
+            future.add_done_callback(log_errors)
 
     dg_connection.on(LiveTranscriptionEvents.Transcript, on_message)
 
