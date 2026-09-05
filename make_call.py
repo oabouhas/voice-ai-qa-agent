@@ -1,4 +1,5 @@
 import os
+import sys
 from dotenv import load_dotenv
 from twilio.rest import Client
 
@@ -9,15 +10,18 @@ auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 twilio_number = os.getenv("TWILIO_PHONE_NUMBER")
 target_number = os.getenv("TARGET_PHONE_NUMBER")
 
-# IMPORTANT: update this every time your tunnel URL changes
-PUBLIC_URL = "https://nice-rabbits-taste.loca.lt"
+PUBLIC_URL = "https://voice-ai-qa-agent.onrender.com"
+
+# Pass a scenario name as a command-line argument, e.g.:
+#   python make_call.py refill
+scenario = sys.argv[1] if len(sys.argv) > 1 else "reschedule"
 
 client = Client(account_sid, auth_token)
 
 call = client.calls.create(
     to=target_number,
     from_=twilio_number,
-    url=f"{PUBLIC_URL}/voice",
+    url=f"{PUBLIC_URL}/voice?scenario={scenario}",
 )
 
-print(f"Call started: {call.sid}")
+print(f"Call started: {call.sid} (scenario: {scenario})")

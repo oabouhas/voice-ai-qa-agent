@@ -21,22 +21,59 @@ claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # "Rachel" voice
 
-SYSTEM_PROMPT = """You are Omnia, a patient calling Pivot Point Orthopedics.
-You are testing their AI phone agent. Your goal: reschedule an upcoming
-appointment from Friday to the following Monday. Speak naturally, like a real
-patient on the phone - short sentences, occasional filler words. If the agent
-asks for your name or date of birth, use: Omnia Abouhassan, December 14th, 1998.
-Keep each response short (1-2 sentences), like a real phone conversation.
-If the agent hasn't said anything yet, start by greeting them and saying you'd
-like to reschedule an appointment.
+BASE_PATIENT_INFO = """If the agent asks for your name or date of birth, use:
+Omnia Abouhassan, December 14th, 1998. Speak naturally, like a real patient on
+the phone - short sentences, occasional filler words. Keep each response short
+(1-2 sentences), like a real phone conversation. If the agent hasn't said
+anything yet, start by greeting them and stating your goal for the call.
 If the conversation seems to have reached a natural end, say a polite goodbye.
 """
 
+SCENARIOS = {
+    "reschedule": f"""You are Omnia, a patient calling Pivot Point Orthopedics.
+You are testing their AI phone agent. Your goal: reschedule an upcoming
+appointment from Friday to the following Monday.
+{BASE_PATIENT_INFO}""",
 
-def print_full_transcript(transcript_lines: list, call_id: str):
+    "new_appointment": f"""You are Omnia, a new patient calling Pivot Point
+Orthopedics for the first time. Your goal: schedule a new appointment for a
+knee pain evaluation, ideally sometime next week. You don't have an existing
+appointment on file.
+{BASE_PATIENT_INFO}""",
+
+    "cancel": f"""You are Omnia, a patient calling Pivot Point Orthopedics.
+Your goal: cancel your upcoming appointment entirely (not reschedule it) because
+you're moving out of state and won't need the follow-up.
+{BASE_PATIENT_INFO}""",
+
+    "refill": f"""You are Omnia, a patient calling Pivot Point Orthopedics.
+Your goal: request a refill of your pain medication prescription, which you're
+running low on. If asked which medication, say "the one Dr. Lukovsky prescribed
+after my last visit" and let the agent figure out details naturally.
+{BASE_PATIENT_INFO}""",
+
+    "hours_insurance": f"""You are Omnia, a prospective patient calling Pivot
+Point Orthopedics for the first time. Your goal: ask about their office hours,
+whether they're open on weekends, and whether they accept Blue Cross Blue
+Shield insurance. You are not trying to book anything yet - just gathering info.
+{BASE_PATIENT_INFO}""",
+
+    "edge_case": f"""You are Omnia, a somewhat distracted patient calling Pivot
+Point Orthopedics. Your goal: ask about rescheduling an appointment, but partway
+through the call, interrupt yourself, change the subject briefly (mention you
+also want to ask about a billing question), then circle back to the original
+rescheduling request. Be a little unclear or meandering, like a real distracted
+caller, but eventually get to the point.
+{BASE_PATIENT_INFO}""",
+}
+
+DEFAULT_SCENARIO = "reschedule"
+
+
+def print_full_transcript(transcript_lines: list, call_id: str, scenario: str):
     """Print one clean, easy-to-copy transcript block when the call ends."""
     print("\n" + "=" * 60)
-    print(f"FULL TRANSCRIPT - Call ID: {call_id}")
+    print(f"FULL TRANSCRIPT - Call ID: {call_id} - Scenario: {scenario}")
     print("=" * 60)
     if transcript_lines:
         for line in transcript_lines:
@@ -46,14 +83,14 @@ def print_full_transcript(transcript_lines: list, call_id: str):
     print("=" * 60 + "\n")
 
 
-def call_claude(conversation_history: list, user_said: str) -> str:
+def call_claude(conversation_history: list, user_said: str, system_prompt: str) -> str:
     """Send the latest thing the agent said to Claude, get the patient's reply."""
     conversation_history.append({"role": "user", "content": user_said})
 
     response = claude.messages.create(
         model="claude-sonnet-4-5",
         max_tokens=150,
-        system=SYSTEM_PROMPT,
+        system=system_prompt,
         messages=conversation_history,
     )
     reply = response.content[0].text
@@ -83,10 +120,13 @@ def text_to_speech_ulaw(text: str) -> bytes:
 async def voice_webhook(request: Request):
     """Twilio hits this when the call connects. We tell it to open a media stream."""
     host = request.headers.get("host")
+    scenario = request.query_params.get("scenario", DEFAULT_SCENARIO)
+    if scenario not in SCENARIOS:
+        scenario = DEFAULT_SCENARIO
     twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Connect>
-        <Stream url="wss://{host}/media-stream" />
+        <Stream url="wss://{host}/media-stream?scenario={scenario}" />
     </Connect>
 </Response>"""
     return Response(content=twiml, media_type="application/xml")
@@ -95,7 +135,11 @@ async def voice_webhook(request: Request):
 @app.websocket("/media-stream")
 async def media_stream(websocket: WebSocket):
     await websocket.accept()
-    print("[TWILIO] WebSocket connected")
+    scenario = websocket.query_params.get("scenario", DEFAULT_SCENARIO)
+    if scenario not in SCENARIOS:
+        scenario = DEFAULT_SCENARIO
+    system_prompt = SCENARIOS[scenario]
+    print(f"[TWILIO] WebSocket connected - Scenario: {scenario}")
 
     stream_sid = None
     call_active = True
@@ -150,7 +194,7 @@ async def media_stream(websocket: WebSocket):
         await send_audio_to_twilio(websocket, stream_sid, audio_bytes)
 
     async def handle_final_transcript(transcript: str):
-        reply_text = call_claude(conversation_history, transcript)
+        reply_text = call_claude(conversation_history, transcript, system_prompt)
         await speak(reply_text)
 
     async def send_audio_to_twilio(ws, sid, audio_bytes):
@@ -177,6 +221,7 @@ async def media_stream(websocket: WebSocket):
         opening_line = call_claude(
             conversation_history,
             "(The call has just connected. No one has spoken yet.)",
+            system_prompt,
         )
         await speak(opening_line)
 
@@ -200,7 +245,7 @@ async def media_stream(websocket: WebSocket):
                 print("[TWILIO] Stream stopped")
                 call_active = False
                 dg_connection.finish()
-                print_full_transcript(transcript_lines, stream_sid or "unknown-call")
+                print_full_transcript(transcript_lines, stream_sid or "unknown-call", scenario)
                 break
 
     except Exception:
@@ -208,7 +253,7 @@ async def media_stream(websocket: WebSocket):
         traceback.print_exc()
         call_active = False
         dg_connection.finish()
-        print_full_transcript(transcript_lines, stream_sid or "unknown-call")
+        print_full_transcript(transcript_lines, stream_sid or "unknown-call", scenario)
 
 
 if __name__ == "__main__":
