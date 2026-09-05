@@ -3,6 +3,9 @@ import json
 import base64
 import asyncio
 import traceback
+import smtplib
+from email.mime.text import MIMEText
+from datetime import datetime
 
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import Response
@@ -21,6 +24,10 @@ claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # "Rachel" voice
 
+GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL")
+
 SYSTEM_PROMPT = """You are Omnia, a patient calling Pivot Point Orthopedics.
 You are testing their AI phone agent. Your goal: reschedule an upcoming
 appointment from Friday to the following Monday. Speak naturally, like a real
@@ -31,6 +38,30 @@ If the agent hasn't said anything yet, start by greeting them and saying you'd
 like to reschedule an appointment.
 If the conversation seems to have reached a natural end, say a polite goodbye.
 """
+
+
+def send_transcript_email(transcript_lines: list, call_id: str):
+    """Email the full call transcript once the call ends."""
+    if not (GMAIL_ADDRESS and GMAIL_APP_PASSWORD and NOTIFY_EMAIL):
+        print("[EMAIL] Skipping - email credentials not configured")
+        return
+
+    body = "\n".join(transcript_lines) if transcript_lines else "(no transcript captured)"
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    msg = MIMEText(body)
+    msg["Subject"] = f"Call transcript - {call_id} - {timestamp}"
+    msg["From"] = GMAIL_ADDRESS
+    msg["To"] = NOTIFY_EMAIL
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
+            server.send_message(msg)
+        print(f"[EMAIL] Transcript sent for {call_id}")
+    except Exception:
+        print("[EMAIL ERROR] Failed to send transcript:")
+        traceback.print_exc()
 
 
 def call_claude(conversation_history: list, user_said: str) -> str:
@@ -85,8 +116,9 @@ async def media_stream(websocket: WebSocket):
     print("[TWILIO] WebSocket connected")
 
     stream_sid = None
-    call_active = True  # flips to False once the call ends, so we stop trying to speak
-    conversation_history = []  # per-call, not shared across calls
+    call_active = True
+    conversation_history = []
+    transcript_lines = []  # human-readable log for the email
     loop = asyncio.get_running_loop()
 
     dg_connection = deepgram.listen.live.v("1")
@@ -95,6 +127,7 @@ async def media_stream(websocket: WebSocket):
         transcript = result.channel.alternatives[0].transcript
         if transcript and result.is_final:
             print(f"[DEEPGRAM] {transcript}")
+            transcript_lines.append(f"AGENT: {transcript}")
             future = asyncio.run_coroutine_threadsafe(
                 handle_final_transcript(transcript), loop
             )
@@ -130,16 +163,15 @@ async def media_stream(websocket: WebSocket):
             print("[INFO] Call already ended, skipping speech")
             return
         print(f"[SPEAKING] {reply_text}")
+        transcript_lines.append(f"YOU: {reply_text}")
         audio_bytes = text_to_speech_ulaw(reply_text)
         await send_audio_to_twilio(websocket, stream_sid, audio_bytes)
 
     async def handle_final_transcript(transcript: str):
-        """Once the agent finishes a sentence, get Claude's reply and speak it."""
         reply_text = call_claude(conversation_history, transcript)
         await speak(reply_text)
 
     async def send_audio_to_twilio(ws, sid, audio_bytes):
-        """Twilio expects base64 mulaw audio in ~160-byte (20ms) chunks."""
         chunk_size = 160
         try:
             for i in range(0, len(audio_bytes), chunk_size):
@@ -153,13 +185,12 @@ async def media_stream(websocket: WebSocket):
                     "media": {"payload": payload},
                 }
                 await ws.send_text(json.dumps(message))
-                await asyncio.sleep(0.02)  # pace it roughly at real-time
+                await asyncio.sleep(0.02)
         except Exception:
             print("[INFO] Call ended while bot was still speaking - stopping playback")
 
     async def send_initial_greeting():
-        """Have our bot speak first, in case the other agent waits for the caller."""
-        await asyncio.sleep(1.5)  # let the stream settle before speaking
+        await asyncio.sleep(1.5)
         print("[INIT] Sending opening line")
         opening_line = call_claude(
             conversation_history,
@@ -187,6 +218,7 @@ async def media_stream(websocket: WebSocket):
                 print("[TWILIO] Stream stopped")
                 call_active = False
                 dg_connection.finish()
+                send_transcript_email(transcript_lines, stream_sid or "unknown-call")
                 break
 
     except Exception:
@@ -194,6 +226,7 @@ async def media_stream(websocket: WebSocket):
         traceback.print_exc()
         call_active = False
         dg_connection.finish()
+        send_transcript_email(transcript_lines, stream_sid or "unknown-call")
 
 
 if __name__ == "__main__":
