@@ -3,7 +3,6 @@ import json
 import base64
 import asyncio
 import traceback
-from urllib.parse import parse_qs
 
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import Response
@@ -124,10 +123,14 @@ async def voice_webhook(request: Request):
     scenario = request.query_params.get("scenario", DEFAULT_SCENARIO)
     if scenario not in SCENARIOS:
         scenario = DEFAULT_SCENARIO
+    # NOTE: Twilio strips query strings from the <Stream> url, so we pass the
+    # scenario via a <Parameter> tag instead, which arrives in the 'start' event.
     twiml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Connect>
-        <Stream url="wss://{host}/media-stream?scenario={scenario}" />
+        <Stream url="wss://{host}/media-stream">
+            <Parameter name="scenario" value="{scenario}" />
+        </Stream>
     </Connect>
 </Response>"""
     return Response(content=twiml, media_type="application/xml")
@@ -136,21 +139,14 @@ async def voice_webhook(request: Request):
 @app.websocket("/media-stream")
 async def media_stream(websocket: WebSocket):
     await websocket.accept()
-
-    query_string = websocket.scope.get("query_string", b"").decode()
-    parsed_params = parse_qs(query_string)
-    scenario = parsed_params.get("scenario", [DEFAULT_SCENARIO])[0]
-    print(f"[DEBUG] Raw query string: {query_string!r}, parsed scenario: {scenario}")
-
-    if scenario not in SCENARIOS:
-        scenario = DEFAULT_SCENARIO
-    system_prompt = SCENARIOS[scenario]
-    print(f"[TWILIO] WebSocket connected - Scenario: {scenario}")
+    print("[TWILIO] WebSocket connected")
 
     stream_sid = None
     call_active = True
     conversation_history = []
     transcript_lines = []
+    scenario = DEFAULT_SCENARIO  # overwritten once the 'start' event arrives
+    system_prompt = SCENARIOS[scenario]
     loop = asyncio.get_running_loop()
 
     dg_connection = deepgram.listen.live.v("1")
@@ -239,7 +235,12 @@ async def media_stream(websocket: WebSocket):
 
             if data["event"] == "start":
                 stream_sid = data["start"]["streamSid"]
-                print(f"[TWILIO] Stream started: {stream_sid}")
+                custom_params = data["start"].get("customParameters", {})
+                scenario = custom_params.get("scenario", DEFAULT_SCENARIO)
+                if scenario not in SCENARIOS:
+                    scenario = DEFAULT_SCENARIO
+                system_prompt = SCENARIOS[scenario]
+                print(f"[TWILIO] Stream started: {stream_sid} - Scenario: {scenario}")
                 asyncio.create_task(send_initial_greeting())
 
             elif data["event"] == "media":
