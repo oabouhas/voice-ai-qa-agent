@@ -2,7 +2,7 @@ import os
 import json
 import base64
 import asyncio
-from datetime import datetime
+import traceback
 
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import Response
@@ -19,22 +19,21 @@ app = FastAPI()
 deepgram = DeepgramClient(os.getenv("DEEPGRAM_API_KEY"))
 claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
-ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # default "Rachel" voice; swap later if you want
+ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # "Rachel" voice
 
-# The persona your bot plays on the call.
 SYSTEM_PROMPT = """You are Omnia, a patient calling Pivot Point Orthopedics.
 You are testing their AI phone agent. Your goal: reschedule an upcoming
 appointment from Friday to the following Monday. Speak naturally, like a real
-patient on the phone — short sentences, occasional filler words. If the agent
+patient on the phone - short sentences, occasional filler words. If the agent
 asks for your name or date of birth, use: Omnia Abouhassan, December 14th, 1998.
-Keep each response short (1-2 sentences), like real phone conversation.
+Keep each response short (1-2 sentences), like a real phone conversation.
+If the agent hasn't said anything yet, start by greeting them and saying you'd
+like to reschedule an appointment.
 If the conversation seems to have reached a natural end, say a polite goodbye.
 """
 
-conversation_history = []
 
-
-def call_claude(user_said: str) -> str:
+def call_claude(conversation_history: list, user_said: str) -> str:
     """Send the latest thing the agent said to Claude, get the patient's reply."""
     conversation_history.append({"role": "user", "content": user_said})
 
@@ -86,9 +85,9 @@ async def media_stream(websocket: WebSocket):
     print("[TWILIO] WebSocket connected")
 
     stream_sid = None
-    loop = asyncio.get_event_loop()
+    conversation_history = []  # per-call, not shared across calls
+    loop = asyncio.get_running_loop()
 
-    # --- Set up Deepgram live transcription ---  
     dg_connection = deepgram.listen.live.v("1")
 
     def on_message(self, result, **kwargs):
@@ -98,16 +97,20 @@ async def media_stream(websocket: WebSocket):
             future = asyncio.run_coroutine_threadsafe(
                 handle_final_transcript(transcript), loop
             )
-            def log_errors(f):
-                try:
-                    f.result()
-                except Exception as e:
-                    import traceback
-                    print(f"[ERROR in handle_final_transcript] {e}")
-                    traceback.print_exc()
-            future.add_done_callback(log_errors)
+            future.add_done_callback(log_task_errors)
+
+    def on_error(self, error, **kwargs):
+        print(f"[DEEPGRAM ERROR] {error}")
+
+    def log_task_errors(f):
+        try:
+            f.result()
+        except Exception:
+            print("[ERROR] Exception in scheduled task:")
+            traceback.print_exc()
 
     dg_connection.on(LiveTranscriptionEvents.Transcript, on_message)
+    dg_connection.on(LiveTranscriptionEvents.Error, on_error)
 
     options = LiveOptions(
         model="nova-2",
@@ -121,11 +124,15 @@ async def media_stream(websocket: WebSocket):
     )
     dg_connection.start(options)
 
-    async def handle_final_transcript(transcript: str):
-        """Once the agent finishes a sentence, get Claude's reply and speak it."""
-        reply_text = call_claude(transcript)
+    async def speak(reply_text: str):
+        print(f"[SPEAKING] {reply_text}")
         audio_bytes = text_to_speech_ulaw(reply_text)
         await send_audio_to_twilio(websocket, stream_sid, audio_bytes)
+
+    async def handle_final_transcript(transcript: str):
+        """Once the agent finishes a sentence, get Claude's reply and speak it."""
+        reply_text = call_claude(conversation_history, transcript)
+        await speak(reply_text)
 
     async def send_audio_to_twilio(ws, sid, audio_bytes):
         """Twilio expects base64 mulaw audio in ~160-byte (20ms) chunks."""
@@ -141,15 +148,26 @@ async def media_stream(websocket: WebSocket):
             await ws.send_text(json.dumps(message))
             await asyncio.sleep(0.02)  # pace it roughly at real-time
 
+    async def send_initial_greeting():
+        """Have our bot speak first, in case the other agent waits for the caller."""
+        await asyncio.sleep(1.5)  # let the stream settle before speaking
+        print("[INIT] Sending opening line")
+        opening_line = call_claude(
+            conversation_history,
+            "(The call has just connected. No one has spoken yet.)",
+        )
+        await speak(opening_line)
+
     try:
         while True:
             message = await websocket.receive_text()
             data = json.loads(message)
-            print(f"[EVENT] {data['event']}")  # log every single event type we get
+            print(f"[EVENT] {data['event']}")
 
             if data["event"] == "start":
                 stream_sid = data["start"]["streamSid"]
                 print(f"[TWILIO] Stream started: {stream_sid}")
+                asyncio.create_task(send_initial_greeting())
 
             elif data["event"] == "media":
                 payload = data["media"]["payload"]
@@ -161,14 +179,9 @@ async def media_stream(websocket: WebSocket):
                 dg_connection.finish()
                 break
 
-    except Exception as e:
-        import traceback
+    except Exception:
         print("[ERROR] Exception in media_stream:")
         traceback.print_exc()
-        dg_connection.finish()
-
-    except Exception as e:
-        print(f"[ERROR] {e}")
         dg_connection.finish()
 
 
