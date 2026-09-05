@@ -1,27 +1,83 @@
+FULL TRANSCRIPT - Call ID: MZa6488de61c2040b36508c803b5c4d43c
 ============================================================
-FULL TRANSCRIPT - Call ID: MZ9e018f334f2292de45db955462ee233c - Scenario: refill
-============================================================
-YOU: Hi, um, I'm calling because I need a refill on my pain medication? I'm running a bit low.
+YOU: Hi there! I'd like to reschedule an appointment I have coming up.
 AGENT: this call may be recorded for quality and training purposes
-YOU: Oh, okay, that's fine. Um, yeah, so I just need to get my pain medication refilled if that's possible?
-AGENT: thanks for calling pivotpoint orthopedics
-YOU: Thanks. Yeah, so I'm getting low on my prescription and I was hoping to get it refilled soon?
-AGENT: part of pretty good ai
-YOU: Uh, sorry, I didn't quite catch that? But yeah, I just need a refill on my pain medication if you can help with that.
+YOU: Okay, no problem. Um, yeah, so I need to move my appointment that's scheduled for this Friday.
+AGENT: thanks for calling pivotpoint orthopaedics
+YOU: Hi, yeah, so I have an appointment on Friday and I was wondering if I could move it to Monday instead?
+AGENT: part of pretty good
 AGENT: how may i help you today
-YOU: Hi, yeah, I need to refill my pain medication. I'm running pretty low and I don't want to run out.
-AGENT: can you please provide your full name and date of birth
-YOU: Sure, it's Omnia Abouhassan, and my date of birth is December 14th, 1998.
-AGENT: i don't see any pain medications on your chart that i can refill right now
-YOU: Oh, um, it's the one that Dr. Lukovsky prescribed after my last visit with him. Maybe it's under his name or something?
-AGENT: if you'd like to speak with someone about this just let me know
-YOU: Yeah, that would be great actually. Can I talk to someone who can help me figure this out?
-AGENT: transferring you now
-YOU: Okay, thank you.
-AGENT: thank you
-YOU: You're welcome. I'll just wait for the transfer then.
-AGENT: hello you've reached the pretty good ai test line
-YOU: Oh, hi there. Um, I was just transferred - I'm trying to get a refill on my pain medication that Dr. Lukovsky prescribed, but they couldn't find it in my chart?
+YOU: Sorry, I didn't quite catch that. But yeah, I just need to reschedule from Friday to the following Monday if that's possible?
+YOU: I need to reschedule my appointment from this Friday to Monday of next week. Is that available?
+AGENT: i see you're calling from the number we have on file
+YOU: Yes, that's right. So can you help me move my Friday appointment to the Monday after?
+AGENT: am i speaking with anne
+YOU: No, it's Omnia - Omnia Abouhassan.
+AGENT: please provide your date of birth
+YOU: December 14th, 1998.
+AGENT: you have an appointment scheduled for tuesday september eighth at ten thirty am
+YOU: Hmm, I thought it was on a Friday? But anyway, I need to reschedule that appointment to the following Monday if possible.
+AGENT: with doctor zidbinyu lukovsky at nashville
+YOU: Okay, yeah, that sounds right. So can I move that to the Monday after instead?
+AGENT: two
+YOU: Sorry, Monday the what? Which date would that be?
+AGENT: the next available slot is monday september four
+YOU: Wait, September 4th? That's before September 8th though. I need to move it to a Monday after my current appointment, not before.
+AGENT: your current appointment is tuesday
+YOU: Oh okay, so my appointment is Tuesday, September 8th. And you're saying Monday, September 4th is available? But I need it moved to a later date, not earlier. Is there a Monday after September 8th that's open?
+AGENT: september eighth
+YOU: Right, so is there a Monday after September 8th available? Like maybe September 14th or something like that?
+AGENT: the next monday after that is september fourteenth
+YOU: Perfect! Yeah, September 14th works great. Can we schedule it for that day?
+AGENT: you like to move your appointment
+YOU: Yes, exactly. I'd like to move my appointment from Tuesday, September 8th to Monday, September 14th please.
+AGENT: yes
+YOU: Great, thank you! What time would that be on the 14th?
+AGENT: available slot is monday september fourteenth at nine am
+YOU: Nine am works for me! Let's go ahead and book that.
+AGENT: can you tell me the reason you need to reschedule
+YOU: Oh, um, I just have a work conflict that came up on the 8th, so the Monday works better for my schedule.
+AGENT: you share the reason you need to reschedule your appointment
+YOU: Yeah, like I said, I have a work thing that came up on Tuesday the 8th, so I need to move it to Monday instead.
+AGENT: what is the reason for rescheduling your appointment
+YOU: I have a work conflict on that Tuesday. Can we confirm the new appointment for Monday, September 14th at 9am?
+AGENT: i need to record it before moving your appointment
+YOU: Oh okay, got it. The reason is I have a work conflict on Tuesday, September 8th.
+AGENT: thanks
+YOU: No problem. So we're all set for Monday, September 14th at 9am then?
+AGENT: thanks for explaining
+YOU: Yeah, of course. So is my appointment confirmed for the 14th?
+AGENT: to confirm you want to move your appointment to monday september fourth
+YOU: No, no - Monday, September 14th. Not the 4th. The Monday after my current appointment.
+AGENT: is that correct
+YOU: No, it should be Monday, September 14th at 9am. Not September 4th.
+AGENT: your appointment has been moved
+YOU: Great! Just to confirm - it's now scheduled for Monday, September 14th at 9am, right?
+AGENT: your
+YOU: Sorry, I just want to make sure - is it confirmed for Monday, September 14th at 9am?
+AGENT: appointment is now set for monday
+YOU: Perfect, thank you so much! Is there anything else I need to do, or are we all set?
+AGENT: september fourteenth at nine am with doctor zibigniew lukovsky
+YOU: Awesome, thank you so much for your help! Have a great day!
+AGENT: yes your appointment is monday september fourteenth at nine am
+YOU: Perfect, I really appreciate it. Thanks again, bye!
+AGENT: your appointment is on the monday right after your original date september four
+YOU: Wait, I'm confused - is it September 4th or September 14th? I need it to be the Monday AFTER my original appointment on September 8th, which would be September 14th.
+AGENT: at nine a
+AGENT: let me know if you need anything else
+YOU: Okay, so just to be 100% clear - my appointment is Monday, September 14th at 9am, right? That's the Monday after my original Tuesday, September 8th appointment?
+YOU: No, I think that's everything. Thanks so much for your help! Bye now.
+AGENT: your appointment is on the monday after your original one
+YOU: Perfect, thank you! That's all I needed. Have a good one, bye!
+AGENT: september fourteenth at nine am
+YOU: Great, thanks so much! Appreciate your help. Bye!
+AGENT: you need to make any more changes
+YOU: Nope, I'm all set! Thanks again, have a great day. Bye!
+AGENT: just let me know
+YOU: Will do, thanks! Bye!
+AGENT: are you still there
+YOU: Yeah, I'm here. I think we're all done though - everything's confirmed for September 14th at 9am. Thanks again!
+AGENT: i'm going to end the call now
+YOU: Sounds good, thank you so much! Bye!
 AGENT: goodbye
-YOU: Oh, okay... bye then.
-============================================================
+YOU: Bye!
