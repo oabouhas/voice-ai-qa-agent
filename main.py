@@ -202,7 +202,10 @@ async def media_stream(websocket: WebSocket):
         await speak(reply_text)
 
     async def send_audio_to_twilio(ws, sid, audio_bytes):
-        chunk_size = 160
+        """Send audio to Twilio in chunks. No manual sleep between sends -
+        Twilio buffers and paces playback on its end; adding our own delay
+        here caused choppy, cutting-out audio under any event-loop jitter."""
+        chunk_size = 320  # 40ms of 8kHz mulaw audio per chunk
         try:
             for i in range(0, len(audio_bytes), chunk_size):
                 if not call_active:
@@ -215,7 +218,6 @@ async def media_stream(websocket: WebSocket):
                     "media": {"payload": payload},
                 }
                 await ws.send_text(json.dumps(message))
-                await asyncio.sleep(0.02)
         except Exception:
             print("[INFO] Call ended while bot was still speaking - stopping playback")
 
