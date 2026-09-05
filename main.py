@@ -3,9 +3,6 @@ import json
 import base64
 import asyncio
 import traceback
-import smtplib
-from email.mime.text import MIMEText
-from datetime import datetime
 
 from fastapi import FastAPI, WebSocket, Request
 from fastapi.responses import Response
@@ -24,10 +21,6 @@ claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
 ELEVENLABS_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"  # "Rachel" voice
 
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
-NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL")
-
 SYSTEM_PROMPT = """You are Omnia, a patient calling Pivot Point Orthopedics.
 You are testing their AI phone agent. Your goal: reschedule an upcoming
 appointment from Friday to the following Monday. Speak naturally, like a real
@@ -40,28 +33,17 @@ If the conversation seems to have reached a natural end, say a polite goodbye.
 """
 
 
-def send_transcript_email(transcript_lines: list, call_id: str):
-    """Email the full call transcript once the call ends."""
-    if not (GMAIL_ADDRESS and GMAIL_APP_PASSWORD and NOTIFY_EMAIL):
-        print("[EMAIL] Skipping - email credentials not configured")
-        return
-
-    body = "\n".join(transcript_lines) if transcript_lines else "(no transcript captured)"
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    msg = MIMEText(body)
-    msg["Subject"] = f"Call transcript - {call_id} - {timestamp}"
-    msg["From"] = GMAIL_ADDRESS
-    msg["To"] = NOTIFY_EMAIL
-
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
-            server.send_message(msg)
-        print(f"[EMAIL] Transcript sent for {call_id}")
-    except Exception:
-        print("[EMAIL ERROR] Failed to send transcript:")
-        traceback.print_exc()
+def print_full_transcript(transcript_lines: list, call_id: str):
+    """Print one clean, easy-to-copy transcript block when the call ends."""
+    print("\n" + "=" * 60)
+    print(f"FULL TRANSCRIPT - Call ID: {call_id}")
+    print("=" * 60)
+    if transcript_lines:
+        for line in transcript_lines:
+            print(line)
+    else:
+        print("(no transcript captured)")
+    print("=" * 60 + "\n")
 
 
 def call_claude(conversation_history: list, user_said: str) -> str:
@@ -118,7 +100,7 @@ async def media_stream(websocket: WebSocket):
     stream_sid = None
     call_active = True
     conversation_history = []
-    transcript_lines = []  # human-readable log for the email
+    transcript_lines = []
     loop = asyncio.get_running_loop()
 
     dg_connection = deepgram.listen.live.v("1")
@@ -218,7 +200,7 @@ async def media_stream(websocket: WebSocket):
                 print("[TWILIO] Stream stopped")
                 call_active = False
                 dg_connection.finish()
-                send_transcript_email(transcript_lines, stream_sid or "unknown-call")
+                print_full_transcript(transcript_lines, stream_sid or "unknown-call")
                 break
 
     except Exception:
@@ -226,7 +208,7 @@ async def media_stream(websocket: WebSocket):
         traceback.print_exc()
         call_active = False
         dg_connection.finish()
-        send_transcript_email(transcript_lines, stream_sid or "unknown-call")
+        print_full_transcript(transcript_lines, stream_sid or "unknown-call")
 
 
 if __name__ == "__main__":
